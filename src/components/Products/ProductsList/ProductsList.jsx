@@ -1,32 +1,28 @@
 import { Link } from "react-router-dom";
-import { Table } from 'react-bootstrap';
+import '../products.css'
 
 const ProductsList = ({ products, title }) => {
 
     return (
-        <div className="blog-list">
+        <>
             <h1>{title}</h1>
-            <Table responsive>
-
+            <main className="main">
                 {products.map((product, index) => {
-                    if (!("Vendido" in product)) {
-                        return (
-                            <tbody>
-                                <tr>
-                                    <Link to={`/products/${index}`} >
-                                        <td width="400px"><p>{product.["Item Desc"]}</p></td>
-                                        <td><h3>{product.LPN}</h3></td>
-                                        <td><h3>{product.ASIN}</h3></td>
-                                        {/*<button onClick={() => handleDisplayProducts}>Delete product</button>*/}
-                                    </Link>
-                                </tr>
-                            </tbody>
-                        )
-                    } else { return console.log('FFFF') }
-                })
-                }
-            </Table>
-        </div>
+                    return (
+                        !("Vendido" in product) && <div className="grid">
+                            <Link to={`/products/${index}`} className="card" key={index}>
+                                <p style={{ maxWidth: "250px" }}>{product.["Item Desc"]}</p>
+                                <h4>{product.LPN}</h4>
+                                <h4>{product.ASIN}</h4>
+                                {/*<button onClick={() => handleDisplayProducts}>Delete product</button>*/}
+                            </Link>
+                        </div>
+
+                    )
+                })}
+
+            </main>
+        </>
     );
 }
 
