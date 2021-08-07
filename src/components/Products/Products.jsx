@@ -1,15 +1,15 @@
 import ProductsList from './ProductsList/ProductsList'
 import useFetch from '../../useFetch'
-import styles from './products.css'
+import './products.css'
 
 function Products() {
     const { data: products, isLoading, error } = useFetch('http://localhost:8000/products')
 
     return (
-        <div className={styles.container}>
+        <div className="container">
             {error && <div>{error}</div>}
             {isLoading && <div>Loading...</div>}
-            {products && <ProductsList products={products} title={'All products'} />}
+            {products && <ProductsList products={products} title={'Available products'} />}
         </div>
     )
 }
